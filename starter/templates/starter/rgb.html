@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Red Green Blue values within an Image</h1>
+    <h1 class="text-center">RGB values within an Image</h1>
     <div class="container">
         <div class="row justify-content-md-center">
             <table class="table">
@@ -21,13 +21,15 @@
                 {% for color in colors %}
                     <tr>
                         <td>
+                            <div>{{color.file}}</div>
                             <div>{{color.format}}</div>
                             <div>{{color.size}}</div>
                             <div>{{color.label}}</div>
                             <div>{{color.source}}</div>
                         </td>
                         <td>
-                            <img class="img-responsive py-3" src="{{url_for('.static', filename=color.file)}}" alt="" width="256" height="Auto">
+                            {% set img_src = color.path + color.file %}
+                            <img class="img-responsive py-3" src="{{img_src}}" alt="" width="256" height="Auto">
                         </td>
                         <td>
                             <div class="overflow-auto" style="height: 256px">
